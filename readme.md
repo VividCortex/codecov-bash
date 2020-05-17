@@ -2,7 +2,7 @@ Codecov Global Uploader
 =======================
 > Upload reports to Codecov for almost every supported language.
 
-[![Deployed Version](https://codecov.io/bash)](https://codecov.io/bash)
+[Deployed Version](https://codecov.io/bash)
 
 SHA1Sum:  [hash file](https://raw.githubusercontent.com/codecov/codecov-bash/master/SHA1SUM)
 
@@ -14,7 +14,7 @@ bash <(curl -s https://codecov.io/bash)
 
 # Pipe to bash (Jenkins)
 curl -s https://codecov.io/bash | bash -s - -t token
-                                            ^ add your extra config here
+#                                           ^ add your extra config here
 
 # No bash method
 curl -s https://codecov.io/bash > .codecov
@@ -69,7 +69,7 @@ bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverag
 |                       Company                       |                                                                    Supported                                                                     | Token Required   |
 | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------- |
 | [Travis CI](https://travis-ci.org/)                 | Yes [![Build Status](https://secure.travis-ci.org/codecov/codecov-bash.svg?branch=master)](http://travis-ci.org/codecov/codecov-bash)                                                         | Private only     |
-| [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) | Yes                                     | Public & Private |
+| [Azure Pipelines](https://azure.microsoft.com/en-us/services/devops/pipelines/) | Yes                                     | Private only |
 | [CircleCI](https://circleci.com/)                   | Yes                                                                 | Private only     |
 | [Codeship](https://codeship.com/)                   | Yes                                                                                                                  | Public & Private |
 | [Jenkins](https://jenkins-ci.org/)                  | Yes                                                                                                          | Public & Private |
@@ -78,6 +78,7 @@ bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverag
 | [drone.io](https://drone.io/)                       | Yes                                                                                                 | Public & Private |
 | [AppVeyor](http://www.appveyor.com/)                | Yes                                                                  | Private only     |
 | [Bamboo](https://www.atlassian.com/software/bamboo) | Yes                                                                 | Public & Private |
+| [Bitbucket](https://bitbucket.org/product/features/pipelines) | Yes                                                                                                                                   | Public & Private |
 | [Bitrise](https://bitrise.io/)                      | Yes                                                                                                                                    | Public & Private |
 | [buddybuild](https://buddybuild.com)                | Yes                                                                  | Public & Private |
 | [Buildkite](https://buildkite.com)                  | Yes                                                                 | Public & Private |
@@ -85,10 +86,25 @@ bash <(curl -s https://codecov.io/bash) || echo "Codecov did not collect coverag
 | [Wercker](http://wercker.com/)                      | Yes                                                                                                                                              | Public & Private |
 | [Shippable](http://www.shippable.com/)              | Yes                                                                                                                                              | Public & Private |
 | [Gitlab CI](https://about.gitlab.com/gitlab-ci/)    | Yes                                                                                                                                              | Public & Private |
-| [GitHub Actions](https://github.com/features/actions)    | Yes                                                                                                                                              | Public & Private |
+| [Buildkite](https://buildkite.com)                  | Yes                                                                                                                                              | Public & Private |
+| [GitHub Actions](https://github.com/features/actions)    | Yes                                                                                                                                              | Private only |
+| [Cirrus CI](https://cirrus-ci.org/)                 | Yes                                                                                                                                              | Public & Private |
+| [AWS CodeBuild](https://aws.amazon.com/codebuild/)  | Yes                                                                                                                                              | Public & Private |
 | git                                                 | Yes (as a fallback)                                                                                                                              | Public & Private |
 
 
-## Caveat
+### Caveats
 
 1. **Jenkins**: Unable to find reports? Try `PWD=WORKSPACE bash <(curl -s https://codecov.io/bash)`
+ 
+
+
+### Development
+
+Once you made a change to the codecov uploader script, please also update the hash file via:
+
+```bash
+shasum codecov > SHA1SUM
+```
+
+and add the change to your pull request.
